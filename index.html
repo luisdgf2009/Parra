@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Sitio Web Moderno</title>
+  <meta name="description" content="Sitio web moderno con galería, productos, servicios y contacto." />
+  <meta name="keywords" content="productos, servicios, galería, contacto, moderno, responsive" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #e9e9e9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #1e2a38;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    #menu-toggle {
+      display: none;
+      background: none;
+      font-size: 2rem;
+      color: white;
+      border: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    nav ul li {
+      margin: 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00bcd4;
+    }
+
+    #hero {
+      background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: inline-block;
+      max-width: 90%;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #00bcd4;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0199aa;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section[id] {
+      scroll-margin-top: 100px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1e2a38;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .galeria-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .galeria-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .productos {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      min-width: 250px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      padding: 10px;
+      background-color: #1e2a38;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #00bcd4;
+    }
+
+    .testimonios, .faq {
+      margin-top: 40px;
+    }
+
+    .faq {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .faq details {
+      margin-bottom: 10px;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;      
+      border: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #1e2a38;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.2rem;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #1e2a38;
+        padding: 10px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      #menu-toggle {
+        display: block;
+        position: static;
+      }
+
+      .productos {
+        flex-direction: column;
+      }
+
+      section[id] {
+        scroll-margin-top: 70px;
+      }
+
+      #hero {
+        padding: 60px 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mi Sitio Web Moderno</h1>
+    <button id="menu-toggle">☰</button>
+    <nav>
+      <ul id="nav-list">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1 style="color: #1e2a38;">Transforma tu experiencia digital</h1>
+      <a href="#productos" class="btn">Ver productos</a>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería</h2>
+    <div class="galeria-grid">
+      <img src="1banner_asus_proart_nb.jpg" alt="Imagen 1" />
+      <img src="audifonos-con-microfono-para-pc-baratos-.jpg" alt="Imagen 2" />
+      <img src="gaming-mouse-product-sale-advertising-social-media-post_252779-752.jpg" alt="Imagen 3" />
+    </div>
+  </section>
+
+  <section id="productos">
+    <h2>Productos y Servicios</h2>
+    <div class="productos">
+      <div class="card">
+        <h3>Laptop Gaming Series 17"</h3>
+        <p>Alta calidad y excelente rendimiento.</p>
+      </div>
+      <div class="card">
+        <h3>Audífonos Gamer</h3>
+        <p>Soluciones personalizadas para tus necesidades.</p>
+      </div>
+      <div class="card">
+        <h3>Mouse Logitech Gamer</h3>
+        <p>Innovación y tecnología al alcance de todos.</p>
+      </div>
+    </div>
+
+    <div class="testimonios">
+      <h2>Testimonios</h2>
+      <p>"Excelente servicio y atención al cliente." – Ana G.</p>
+      <p>"Los productos superaron mis expectativas." – Carlos M.</p>
+    </div>
+
+    <div class="faq">
+      <h2>Preguntas Frecuentes</h2>
+      <details>
+        <summary>¿Cómo puedo hacer un pedido?</summary>
+        <p>Puedes contactarnos directamente desde el formulario o por redes sociales.</p>
+      </details>
+      <details>
+        <summary>¿Ofrecen envíos internacionales?</summary>
+        <p>Sí, realizamos envíos a varios países. Consulta disponibilidad en contacto.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Tu nombre" required />
+      <input type="email" placeholder="Tu correo electrónico" required />
+      <textarea placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
